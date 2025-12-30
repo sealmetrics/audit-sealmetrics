@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport"content="width=device-width, initial-scale=1.0">
- <title>GA4 vs SealMetrics - flume.com</title>
+ <title>GA4 vs SealMetrics - kuoni.co.uk</title>
  <style>
  * { margin: 0; padding: 0; box-sizing: border-box; }
  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Google Sans', Arial, sans-serif; background: #f8f9fa; color: #202124; line-height: 1.5; padding: 20px; }
@@ -19,7 +19,7 @@
  .btn-primary:hover { background: #1765cc; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
  .content { padding: 24px; }
  .top-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
- .metric-box { display: flex; align-items: center; gap: 20px; }
+ .metric-box { display: flex; align-items: center; gap: 20px; padding: 12px; border: 1px solid #f1f3f4; border-radius: 8px; background: #fff; }
  .metric-icon { display: flex; gap: 4px; }
  .bar { width: 12px; background: #fbbc04; border-radius: 2px; }
  .bar:nth-child(1) { height: 30px; } .bar:nth-child(2) { height: 45px; } .bar:nth-child(3) { height: 60px; }
@@ -53,7 +53,7 @@
  .cta-content p { font-size: 14px; opacity: 0.95; line-height: 1.5; }
  .cta-button { background: white; color: #1a73e8; padding: 12px 24px; border-radius: 4px; font-size: 15px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.2s; white-space: nowrap; }
  .cta-button:hover { background: #f8f9fa; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); transform: translateY(-1px); }
- @media (max-width: 768px) { .cta-box { flex-direction: column; text-align: center; gap: 16px; } }
+ @media (max-width: 768px) { .cta-box { flex-direction: column; text-align: center; gap: 16px; } .top-metrics { grid-template-columns: 1fr; } .comparison-section { grid-template-columns: 1fr; } .table-section { grid-template-columns: 1fr; } }
  </style>
 </head>
 <body>
@@ -68,7 +68,9 @@
  </div>
  </div>
  <div class="content">
- <div class="summary-box"id="summaryBox">GA4 total (sessions): 269,735 • SealMetrics total: 439,668</div>
+ <div class="summary-box"id="summaryBox">
+ Summary: SealMetrics is 63% higher than GA4. Direct traffic in SealMetrics is 30% of GA4 Direct.
+ </div>
  <div class="cta-box">
  <div class="cta-content">
  <h3>🚀 Discover your website’s real traffic</h3>
@@ -94,4 +96,64 @@
  </div>
  </div>
  <div class="comparison-section">
- <div class="chart-container"><h2>GA4</h2><div class="chart-header"><div class="legend-dot ga4"></div><span class="legend-text">Sessions</span></div><div class="chart-bars"id="ga4Chart">
+ <div class="chart-container"><h2>GA4</h2><div class="chart-header"><span class="legend-dot ga4"></span><span class="legend-text">Sessions</span></div><div class="chart-bars"id="ga4Chart"></div></div>
+ <div class="chart-container"><h2>SealMetrics</h2><div class="chart-header"><span class="legend-dot seal"></span><span class="legend-text">Clicks</span></div><div class="chart-bars"id="sealChart"></div></div>
+ </div>
+ <div class="table-section">
+ <div class="table-container">
+ <h2>GA4</h2>
+ <table>
+ <thead><tr><th style="width:40px;"></th><th>Channel</th><th class="sortable"style="text-align:right;">Sessions</th></tr></thead>
+ <tbody id="ga4TableBody">
+ <tr><td>1</td><td>Direct</td><td style="text-align:right;">74,772</td></tr>
+ <tr><td>2</td><td>Mail</td><td style="text-align:right;">12,823</td></tr>
+ <tr><td>3</td><td>Paid</td><td style="text-align:right;">31,933</td></tr>
+ <tr><td>4</td><td>Organic Search</td><td style="text-align:right;">56,938</td></tr>
+ <tr><td>5</td><td>Organic Social</td><td style="text-align:right;">314</td></tr>
+ <tr><td>6</td><td>Social</td><td style="text-align:right;">600</td></tr>
+ <tr><td>7</td><td>Referral</td><td style="text-align:right;">2,779</td></tr>
+ <tr><td>8</td><td>Display</td><td style="text-align:right;">419</td></tr>
+ <tr><td>9</td><td>Paid Search</td><td style="text-align:right;">31,933</td></tr>
+ <tr><td>10</td><td>Paid Social</td><td style="text-align:right;">286</td></tr>
+ <tr><td>11</td><td>Unknown</td><td style="text-align:right;">0</td></tr>
+ </tbody>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="ga4TableTotal">269,735</strong></td></tr></tfoot>
+ </table>
+ </div>
+ <div class="table-container">
+ <h2>SealMetrics</h2>
+ <table>
+ <thead><tr><th style="width:40px;"></th><th>Channels</th><th class="sortable"style="text-align:right;">Clicks</th></tr></thead>
+ <tbody id="sealTableBody">
+ <tr><td>1</td><td>Mail</td><td style="text-align:right;">27,459</td></tr>
+ <tr><td>2</td><td>Paid</td><td style="text-align:right;">68,338</td></tr>
+ <tr><td>3</td><td>Organic Search</td><td style="text-align:right;">121,848</td></tr>
+ <tr><td>4</td><td>Organic Social</td><td style="text-align:right;">672</td></tr>
+ <tr><td>5</td><td>Social</td><td style="text-align:right;">1,284</td></tr>
+ <tr><td>6</td><td>Referral</td><td style="text-align:right;">5,941</td></tr>
+ <tr><td>7</td><td>Display</td><td style="text-align:right;">897</td></tr>
+ <tr><td>8</td><td>Paid Search</td><td style="text-align:right;">68,338</td></tr>
+ <tr><td>9</td><td>Paid Social</td><td style="text-align:right;">611</td></tr>
+ <tr><td>10</td><td>Direct</td><td style="text-align:right;">22,432</td></tr>
+ </tbody>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="sealTableTotal">439,668</strong></td></tr></tfoot>
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+ <script>
+ // Simple CSV copy helper (demo only)
+ function copyCSV(){
+ const lines = [
+ 'GA4 Channel,GA4 Sessions','Direct,74772','Mail,12823','Paid,31933','Organic Search,56938','Organic Social,314','Social,600','Referral,2779','Display,419','Paid Search,31933','Paid Social,286','Unknown,0'
+ ];
+ navigator.clipboard.writeText(lines.join('\n')).then(()=>{ alert('CSV copied to clipboard'); }).catch(()=>{ alert('Copy failed'); });
+ }
+ </script>
+ <script>
+ /* SealMetrics Tracker Code (placeholder for demo; actual tracking loaded externally) */
+ (function(){var options={account:'60a52f6ac660b269d13c3f53',event:'pageview',content_grouping:'GA4-SM',use_session:1};var url="//app.sealmetrics.com/tag/v2/tracker";function loadScript(cb){var s=document.createElement('script');s.src=url;s.async=true;s.onload=function(){if(typeof cb==='function'){cb();}};s.onerror=function(){console.error('Error loading script: '+url);};document.getElementsByTagName('head')[0].appendChild(s);}loadScript(function(){options.id=Math.floor((Math.random()*999)+1);if(window.sm){var instance=new window.sm(options);instance.track(options.event);}else{console.error('sm2 plugin is not available');}});})();
+ </script>
+</body>
+</html>
