@@ -69,7 +69,7 @@
  </div>
  <div class="content">
  <div class="summary-box"id="summaryBox">
- <strong>Key Insights:</strong> SealMetrics reveals 63% more traffic compared to Google Analytics 4, providing a more comprehensive view of your website's performance.
+ <p>🔍 <strong>Key Insights:</strong> SealMetrics reveals a more comprehensive view of your website traffic, capturing up to 63% more interactions than Google Analytics 4.</p>
  </div>
  <div class="cta-box">
  <div class="cta-content">
@@ -102,25 +102,25 @@
  <div class="chart-row">
  <div class="chart-label">Direct</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 90.7%"><div class="chart-value">13,446</div></div>
+ <div class="chart-bar"style="width: 90.7%"><span class="chart-value">13,446</span></div>
  </div>
  </div>
  <div class="chart-row">
  <div class="chart-label">Organic Search</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 8.1%"><div class="chart-value">1,197</div></div>
+ <div class="chart-bar"style="width: 8.1%"><span class="chart-value">1,197</span></div>
  </div>
  </div>
  <div class="chart-row">
  <div class="chart-label">Referral</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 1.2%"><div class="chart-value">172</div></div>
+ <div class="chart-bar"style="width: 1.2%"><span class="chart-value">172</span></div>
  </div>
  </div>
  <div class="chart-row">
  <div class="chart-label">Mail</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 0.2%"><div class="chart-value">31</div></div>
+ <div class="chart-bar"style="width: 0.2%"><span class="chart-value">31</span></div>
  </div>
  </div>
  </div>
@@ -131,25 +131,25 @@
  <div class="chart-row">
  <div class="chart-label">Direct</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 55.7%"><div class="chart-value">13,500</div></div>
+ <div class="chart-bar"style="width: 55.6%"><span class="chart-value">13,446</span></div>
  </div>
  </div>
  <div class="chart-row">
  <div class="chart-label">Organic Search</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 19.5%"><div class="chart-value">4,720</div></div>
+ <div class="chart-bar"style="width: 19.8%"><span class="chart-value">4,790</span></div>
  </div>
  </div>
  <div class="chart-row">
  <div class="chart-label">Referral</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 4.5%"><div class="chart-value">1,090</div></div>
+ <div class="chart-bar"style="width: 4.5%"><span class="chart-value">1,090</span></div>
  </div>
  </div>
  <div class="chart-row">
- <div class="chart-label">Other Channels</div>
+ <div class="chart-label">Mail</div>
  <div class="chart-bar-container">
- <div class="chart-bar"style="width: 20.3%"><div class="chart-value">4,890</div></div>
+ <div class="chart-bar"style="width: 0.5%"><span class="chart-value">121</span></div>
  </div>
  </div>
  </div>
@@ -211,12 +211,12 @@
  <tr>
  <td>🌐</td>
  <td>Direct</td>
- <td style="text-align:right;">13,500</td>
+ <td style="text-align:right;">4,034</td>
  </tr>
  <tr>
  <td>🔍</td>
  <td>Organic Search</td>
- <td style="text-align:right;">4,720</td>
+ <td style="text-align:right;">4,790</td>
  </tr>
  <tr>
  <td>🔗</td>
@@ -224,9 +224,9 @@
  <td style="text-align:right;">1,090</td>
  </tr>
  <tr>
- <td>🌈</td>
- <td>Other Channels</td>
- <td style="text-align:right;">4,890</td>
+ <td>📧</td>
+ <td>Mail</td>
+ <td style="text-align:right;">121</td>
  </tr>
  </tbody>
  <tfoot>
@@ -251,21 +251,16 @@
  ['Mail', 31],
  ['Total', 14846]
  ];
- 
  const sealData = [
  ['Channel', 'Clicks'],
- ['Direct', 13500],
- ['Organic Search', 4720],
+ ['Direct', 4034],
+ ['Organic Search', 4790],
  ['Referral', 1090],
- ['Other Channels', 4890],
+ ['Mail', 121],
  ['Total', 24200]
  ];
- 
- const csvContent = "GA4 Data:\n"+ 
- ga4Data.map(e => e.join(",")).join("\n") + 
- "\n\nSealMetrics Data:\n"+ 
- sealData.map(e => e.join(",")).join("\n");
- 
+ const csvContent = "GA4 Data:\n"+ ga4Data.map(e => e.join(",")).join("\n") + 
+ "\n\nSealMetrics Data:\n"+ sealData.map(e => e.join(",")).join("\n");
  navigator.clipboard.writeText(csvContent).then(() => {
  alert('CSV data copied to clipboard!');
  });
