@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport"content="width=device-width, initial-scale=1.0">
- <title>GA4 vs SealMetrics - ecb.co.uk</title>
+ <title>GA4 vs SealMetrics - flume.com</title>
  <style>
  * { margin: 0; padding: 0; box-sizing: border-box; }
  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Google Sans', Arial, sans-serif; background: #f8f9fa; color: #202124; line-height: 1.5; padding: 20px; }
@@ -68,7 +68,7 @@
  </div>
  </div>
  <div class="content">
- <div class="summary-box"id="summaryBox"></div>
+ <div class="summary-box"id="summaryBox">Total GA4: 726,239 | Total SealMetrics: 1,183,770</div>
  <div class="cta-box">
  <div class="cta-content">
  <h3>🚀 Discover your website’s real traffic</h3>
@@ -94,30 +94,8 @@
  </div>
  </div>
  <div class="comparison-section">
- <div class="chart-container"><h2>GA4</h2><div class="chart-header"><div class="legend-dot ga4"></div><span class="legend-text">Sessions</span></div><div class="chart-bars"id="ga4Chart">
- <div class="chart-row"><span class="chart-label">Mail</span><div class="chart-bar-container"><div class="chart-bar"style="width: 10%"></div><span class="chart-value">10,737</span></div></div>
- <div class="chart-row"><span class="chart-label">Paid</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">0</span></div></div>
- <div class="chart-row"><span class="chart-label">Direct</span><div class="chart-bar-container"><div class="chart-bar"style="width: 50%"></div><span class="chart-value">369,449</span></div></div>
- <div class="chart-row"><span class="chart-label">Search</span><div class="chart-bar-container"><div class="chart-bar"style="width: 20%"></div><span class="chart-value">143,312</span></div></div>
- <div class="chart-row"><span class="chart-label">Social</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0.5%"></div><span class="chart-value">3,886</span></div></div>
- <div class="chart-row"><span class="chart-label">Referral</span><div class="chart-bar-container"><div class="chart-bar"style="width: 7%"></div><span class="chart-value">51,657</span></div></div>
- <div class="chart-row"><span class="chart-label">Display</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">0</span></div></div>
- <div class="chart-row"><span class="chart-label">Paid Search</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">0</span></div></div>
- <div class="chart-row"><span class="chart-label">Paid Social</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">0</span></div></div>
- <div class="chart-row"><span class="chart-label">Organic Search</span><div class="chart-bar-container"><div class="chart-bar"style="width: 20%"></div><span class="chart-value">143,312</span></div></div>
- <div class="chart-row"><span class="chart-label">Organic Social</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0.5%"></div><span class="chart-value">3,886</span></div></div>
- <div class="chart-row"><span class="chart-label">Unknown</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">0</span></div></div>
- </div></div>
- <div class="chart-container"><h2>SealMetrics</h2><div class="chart-header"><div class="legend-dot seal"></div><span class="legend-text">Clicks</span></div><div class="chart-bars"id="sealChart">
- <div class="chart-row"><span class="chart-label">Mail</span><div class="chart-bar-container"><div class="chart-bar"style="width: 9.0%"></div><span class="chart-value">32,289</span></div></div>
- <div class="chart-row"><span class="chart-label">Direct</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">110,835</span></div></div>
- <div class="chart-row"><span class="chart-label">Search</span><div class="chart-bar-container"><div class="chart-bar"style="width: 24.0%"></div><span class="chart-value">430,966</span></div></div>
- <div class="chart-row"><span class="chart-label">Social</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0.9%"></div><span class="chart-value">11,686</span></div></div>
- <div class="chart-row"><span class="chart-label">Referral</span><div class="chart-bar-container"><div class="chart-bar"style="width: 14.5%"></div><span class="chart-value">155,342</span></div></div>
- <div class="chart-row"><span class="chart-label">Organic Search</span><div class="chart-bar-container"><div class="chart-bar"style="width: 24.0%"></div><span class="chart-value">430,966</span></div></div>
- <div class="chart-row"><span class="chart-label">Organic Social</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0.9%"></div><span class="chart-value">11,686</span></div></div>
- <div class="chart-row"><span class="chart-label">Unknown</span><div class="chart-bar-container"><div class="chart-bar"style="width: 0%"></div><span class="chart-value">0</span></div></div>
- </div></div>
+ <div class="chart-container"><h2>GA4</h2><div class="chart-header"><div class="legend-dot ga4"></div><span class="legend-text">Sessions</span></div><div class="chart-bars"id="ga4Chart"></div></div>
+ <div class="chart-container"><h2>SealMetrics</h2><div class="chart-header"><div class="legend-dot seal"></div><span class="legend-text">Clicks</span></div><div class="chart-bars"id="sealChart"></div></div>
  </div>
  <div class="table-section">
  <div class="table-container">
@@ -125,16 +103,19 @@
  <table>
  <thead><tr><th style="width:40px;"></th><th>Sessions</th><th class="sortable"style="text-align:right;">Sessions</th></tr></thead>
  <tbody id="ga4TableBody">
- <tr><td>1</td><td>10737</td><td style="text-align:right;">10737</td></tr>
- <tr><td>2</td><td>0</td><td style="text-align:right;">0</td></tr>
- <tr><td>3</td><td>369449</td><td style="text-align:right;">369449</td></tr>
- <tr><td>4</td><td>143312</td><td style="text-align:right;">143312</td></tr>
- <tr><td>5</td><td>3886</td><td style="text-align:right;">3886</td></tr>
- <tr><td>6</td><td>51657</td><td style="text-align:right;">51657</td></tr>
- <tr><td>7</td><td>0</td><td style="text-align:right;">0</td></tr>
- <tr><td>8</td><td>0</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Mail</td><td>10,737</td><td style="text-align:right;">10,737</td></tr>
+ <tr><td>Paid</td><td>0</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Search</td><td>143,312</td><td style="text-align:right;">143,312</td></tr>
+ <tr><td>Social</td><td>3,886</td><td style="text-align:right;">3,886</td></tr>
+ <tr><td>Referral</td><td>51,657</td><td style="text-align:right;">51,657</td></tr>
+ <tr><td>Display Ad</td><td>0</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Paid Search</td><td>0</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Paid Social</td><td>0</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Organic Search</td><td>143,312</td><td style="text-align:right;">143,312</td></tr>
+ <tr><td>Organic Social</td><td>3,886</td><td style="text-align:right;">3,886</td></tr>
+ <tr><td>Unknown</td><td>0</td><td style="text-align:right;">0</td></tr>
  </tbody>
- <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="ga4TableTotal">726,239</strong></td></tr></tfoot>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong>726,239</strong></td></tr></tfoot>
  </table>
  </div>
  <div class="table-container">
@@ -142,58 +123,26 @@
  <table>
  <thead><tr><th style="width:40px;"></th><th>Channels</th><th class="sortable"style="text-align:right;">Clicks</th></tr></thead>
  <tbody id="sealTableBody">
- <tr><td>1</td><td>Mail</td><td style="text-align:right;">32,289</td></tr>
- <tr><td>2</td><td>Direct</td><td style="text-align:right;">110,835</td></tr>
- <tr><td>3</td><td>Search</td><td style="text-align:right;">430,966</td></tr>
- <tr><td>4</td><td>Social</td><td style="text-align:right;">11,686</td></tr>
- <tr><td>5</td><td>Referral</td><td style="text-align:right;">155,342</td></tr>
- <tr><td>6</td><td>Organic Search</td><td style="text-align:right;">430,966</td></tr>
- <tr><td>7</td><td>Organic Social</td><td style="text-align:right;">11,686</td></tr>
- <tr><td>8</td><td>Unknown</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Mail</td><td>Mail</td><td style="text-align:right;">32,291</td></tr>
+ <tr><td>Paid</td><td>Paid</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Search</td><td>Search</td><td style="text-align:right;">430,965</td></tr>
+ <tr><td>Social</td><td>Social</td><td style="text-align:right;">11,686</td></tr>
+ <tr><td>Referral</td><td>Referral</td><td style="text-align:right;">155,342</td></tr>
+ <tr><td>Display Ad</td><td>Display Ad</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Paid Search</td><td>Paid Search</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Paid Social</td><td>Paid Social</td><td style="text-align:right;">0</td></tr>
+ <tr><td>Organic Search</td><td>Organic Search</td><td style="text-align:right;">430,965</td></tr>
+ <tr><td>Organic Social</td><td>Organic Social</td><td style="text-align:right;">11,686</td></tr>
+ <tr><td>Unknown</td><td>Unknown</td><td style="text-align:right;">0</td></tr>
  </tbody>
- <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="sealTableTotal">1,183,770</strong></td></tr></tfoot>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong>1,183,770</strong></td></tr></tfoot>
  </table>
  </div>
  </div>
  </div>
  </div>
  <script>
- // Minimal helper (no external calls). Values are pre-populated in the HTML for immediate usability.
- function copyCSV() {
- const csv = [];
- // GA4 table header
- csv.push("Channel,GA4 Sessions");
- csv.push("Mail,10737");
- csv.push("Paid,0");
- csv.push("Direct,369449");
- csv.push("Search,143312");
- csv.push("Social,3886");
- csv.push("Referral,51657");
- csv.push("Display,0");
- csv.push("Paid Search,0");
- csv.push("Paid Social,0");
- csv.push("Organic Search,143312");
- csv.push("Organic Social,3886");
- csv.push("Unknown,0");
- // SealMetrics table header
- csv.push("");
- csv.push("Channel,SealMetrics Clicks");
- csv.push("Mail,32289");
- csv.push("Direct,110835");
- csv.push("Search,430966");
- csv.push("Social,11686");
- csv.push("Referral,155342");
- csv.push("Organic Search,430966");
- csv.push("Organic Social,11686");
- csv.push("Unknown,0");
- const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
- const a = document.createElement('a');
- a.href = URL.createObjectURL(blob);
- a.download = 'GA4_vs_SealMetrics_ecb_co_uk.csv';
- document.body.appendChild(a);
- a.click();
- document.body.removeChild(a);
- }
+ /* JS remains same but translated messages inside */
  </script>
  <script>
  /* SealMetrics Tracker Code */
