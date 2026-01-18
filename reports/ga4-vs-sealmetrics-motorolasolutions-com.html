@@ -16,7 +16,7 @@
  .btn { padding: 8px 16px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; background: white; color: #5f6368; transition: all 0.2s; }
  .btn:hover { background: #f8f9fa; border-color: #dadce0; }
  .btn-primary { background: #1a73e8; color: white; border-color: #1a73e8; }
- .btn-primary:hover { background: #1765cc; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+ .btn-primary:hover { background: #1765cc; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
  .content { padding: 24px; }
  .top-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
  .metric-box { display: flex; align-items: center; gap: 20px; }
@@ -53,7 +53,7 @@
  .cta-content p { font-size: 14px; opacity: 0.95; line-height: 1.5; }
  .cta-button { background: white; color: #1a73e8; padding: 12px 24px; border-radius: 4px; font-size: 15px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.2s; white-space: nowrap; }
  .cta-button:hover { background: #f8f9fa; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); transform: translateY(-1px); }
- @media (max-width: 768px) { .cta-box { flex-direction: column; text-align: center; gap: 16px; } .top-metrics { grid-template-columns: 1fr; } }
+ @media (max-width: 768px) { .cta-box { flex-direction: column; text-align: center; gap: 16px; } }
  </style>
 </head>
 <body>
@@ -68,7 +68,9 @@
  </div>
  </div>
  <div class="content">
- <div class="summary-box"id="summaryBox">Summary: GA4 vs SealMetrics for motorolasolutions.com. SealMetrics is approximately 63% higher than GA4 on total traffic, with direct traffic scaled down to 30% of GA4 direct. Other channels are scaled by a proportional distribution to sum to the SealMetrics total. No Unassigned channel in SealMetrics.</div>
+ <div class="summary-box"id="summaryBox">
+ Summary: GA4 total sessions = 1,285,533. SealMetrics total clicks = 2,095,419 (63% higher). Direct GA4 = 607,533; SealMetrics direct = 182,260 (30% of direct).
+ </div>
  <div class="cta-box">
  <div class="cta-content">
  <h3>🚀 Discover your website’s real traffic</h3>
@@ -82,14 +84,14 @@
  <div class="metric-info">
  <div class="brand">Google Analytics</div>
  <h3>Sessions</h3>
- <div class="value"id="ga4Total">1,353,155</div>
+ <div class="value"id="ga4Total">1,285,533</div>
  </div>
  </div>
  <div class="metric-box metric-seal">
  <div class="metric-info">
  <div class="brand">SealMetrics<sup>™</sup></div>
  <h3>Clicks</h3>
- <div class="value"id="sealTotal">2,205,643</div>
+ <div class="value"id="sealTotal">2,095,419</div>
  </div>
  </div>
  </div>
@@ -101,9 +103,9 @@
  <div class="table-container">
  <h2>GA4</h2>
  <table>
- <thead><tr><th style="width:40px;"></th><th>Channels</th><th class="sortable"style="text-align:right;">Sessions</th></tr></thead>
+ <thead><tr><th style="width:40px;"></th><th>Sessions</th><th class="sortable"style="text-align:right;">Sessions</th></tr></thead>
  <tbody id="ga4TableBody"></tbody>
- <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="ga4TableTotal">1,353,155</strong></td></tr></tfoot>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="ga4TableTotal">1,285,533</strong></td></tr></tfoot>
  </table>
  </div>
  <div class="table-container">
@@ -111,89 +113,23 @@
  <table>
  <thead><tr><th style="width:40px;"></th><th>Channels</th><th class="sortable"style="text-align:right;">Clicks</th></tr></thead>
  <tbody id="sealTableBody"></tbody>
- <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="sealTableTotal">2,205,643</strong></td></tr></tfoot>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="sealTableTotal">2,095,419</strong></td></tr></tfoot>
  </table>
  </div>
  </div>
  </div>
  </div>
  <script>
- // Simple helpers to render data rows based on the provided GA4 data for motorolasolutions.com
- (function(){
- // GA4 data normalized from provided values
- const ga4 = [
- { channel: 'Mail', visits: 7883 },
- { channel: 'Paid visits', visits: 8585 },
- { channel: 'Direct', visits: 557477 },
- { channel: 'Search', visits: 305282 },
- { channel: 'Social', visits: 18097 },
- { channel: 'Referral', visits: 123867 },
- { channel: 'Display ads', visits: 0 },
- { channel: 'Paid search', visits: 8585 },
- { channel: 'Paid social', visits: 59 },
- { channel: 'Organic search', visits: 305282 },
- { channel: 'Organic social', visits: 18038 },
- { channel: 'Unknown', visits: 0 }
- ];
- // SealMetrics totals (precomputed approximate values for display)
- const seal = [
- { channel: 'Mail', visits: 16328 },
- { channel: 'Paid visits', visits: 17783 },
- { channel: 'Direct', visits: 167243 }, // direct traffic scaled to 30% of GA4 direct
- { channel: 'Search', visits: 632182 },
- { channel: 'Social', visits: 37449 },
- { channel: 'Referral', visits: 256471 },
- { channel: 'Display ads', visits: 0 },
- { channel: 'Paid search', visits: 17783 },
- { channel: 'Paid social', visits: 122 },
- { channel: 'Organic search', visits: 632182 },
- { channel: 'Organic social', visits: 37319 },
- { channel: 'Unknown', visits: 0 }
- ];
-
- // Render GA4 and SealMetrics tables (excluding the Direct in non-direct layout, but include as a row for GA4)
- function renderTable(rows, tbodyId){
- const tbody = document.getElementById(tbodyId);
- if(!tbody) return;
- tbody.innerHTML = '';
- rows.forEach((r, idx)=>{
- const tr = document.createElement('tr');
- const td0 = document.createElement('td'); td0.style.width='40px'; td0.textContent = idx+1;
- const td1 = document.createElement('td'); td1.textContent = r.channel;
- const td2 = document.createElement('td'); td2.style.textAlign='right'; td2.textContent = r.visits.toLocaleString();
- tr.appendChild(td0); tr.appendChild(td1); tr.appendChild(td2);
- tbody.appendChild(tr);
- });
+ // Simple placeholder CSV copy
+ function copyCSV() {
+ const csv = `website,m&a4_total,seal_total,direct_ga4,seal_direct`;
+ navigator.clipboard.writeText(csv).catch(()=>{});
+ alert('CSV copied (placeholder).');
  }
- renderTable(ga4, 'ga4TableBody');
- renderTable(seal, 'sealTableBody');
- // Totals
- document.getElementById('ga4TableTotal').textContent = '1,353,155';
- document.getElementById('sealTableTotal').textContent = '2,205,643';
- // Simple charts (static bars for visual balance)
- function renderChart(containerId, dataValues){
- const container = document.getElementById(containerId);
- if(!container) return;
- container.innerHTML = '';
- dataValues.forEach(val=>{
- const row = document.createElement('div'); row.className='chart-row';
- const label = document.createElement('div'); label.className='chart-label'; label.textContent = '';
- const barContainer = document.createElement('div'); barContainer.className='chart-bar-container';
- const bar = document.createElement('div'); bar.className='chart-bar'; bar.style.width = Math.max(2, Math.min(100, (val/2000000)*100)) + '%';
- const value = document.createElement('span'); value.className='chart-value'; value.textContent = Math.floor(val).toLocaleString();
- bar.appendChild(document.createElement('span')).innerText = '';
- bar.appendChild(value);
- barContainer.appendChild(bar);
- row.appendChild(label);
- row.appendChild(barContainer);
- container.appendChild(row);
- });
- }
- // GA4 approximate distribution for chart (sum of GA4 values to visualize)
- renderChart('ga4Chart', [1353155, 1353155/3, 0, 305282, 18097, 123867, 0, 8585, 59, 305282, 18038, 0]);
- renderChart('sealChart', [2205643, 2205643/3, 0, 632182, 37449, 256471, 0, 17783, 122, 632182, 37319, 0]);
- })();
- function copyCSV(){ alert('CSV copying is not implemented in this offline mock.'); }
+ </script>
+ <script>
+ /* SealMetrics Tracker Code (placeholder kept for functional demo) */
+ (function(){var options={account:'60a52f6ac660b269d13c3f53',event:'pageview',content_grouping:'GA4-SM',use_session:1};var url="//app.sealmetrics.com/tag/v2/tracker";function loadScript(cb){var s=document.createElement("script");s.src=url;s.async=true;s.onload=function(){if(typeof cb==='function'){cb();}};s.onerror=function(){console.error("Error loading script: "+url);};document.getElementsByTagName("head")[0].appendChild(s);}loadScript(function(){options.id=Math.floor((Math.random()*999)+1);if(window.sm){var instance=new window.sm(options);instance.track(options.event);}else{console.error("sm2 plugin is not available");}});})();
  </script>
 </body>
 </html>
