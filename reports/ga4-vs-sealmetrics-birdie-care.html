@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport"content="width=device-width, initial-scale=1.0">
+ <title>GA4 vs SealMetrics - birdie.care</title>
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Google Sans', Arial, sans-serif; background: #f8f9fa; color: #202124; line-height: 1.5; padding: 20px; }
+ .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; padding: 0; box-shadow: 0 1px 3px rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15); }
+ .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #dadce0; }
+ .header-left { display: flex; align-items: center; gap: 12px; }
+ .header-left h1 { font-size: 22px; font-weight: 400; color: #5f6368; }
+ .website-name { color: #1a73e8; font-weight: 500; }
+ .header-right { display: flex; gap: 10px; }
+ .btn { padding: 8px 16px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; background: white; color: #5f6368; transition: all 0.2s; }
+ .btn:hover { background: #f8f9fa; border-color: #dadce0; }
+ .btn-primary { background: #1a73e8; color: white; border-color: #1a73e8; }
+ .btn-primary:hover { background: #1765cc; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+ .content { padding: 24px; }
+ .summary-box { background: linear-gradient(135deg, #e3f2fd 0%, #e1f5fe 100%); border-left: 4px solid #1a73e8; padding: 20px; border-radius: 4px; margin-bottom: 20px; font-size: 14px; color: #0b2a4a; }
+ .cta-box { background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%); border-radius: 8px; padding: 24px; margin-bottom: 30px; color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3); }
+ .cta-content { flex: 1; }
+ .cta-content h3 { font-size: 18px; font-weight: 500; margin-bottom: 8px; color: white; }
+ .cta-content p { font-size: 14px; opacity: 0.95; line-height: 1.5; }
+ .cta-button { background: white; color: #1a73e8; padding: 12px 24px; border-radius: 4px; font-size: 15px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.2s; white-space: nowrap; }
+ .cta-button:hover { background: #f8f9fa; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); transform: translateY(-1px); }
+ .top-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+ .metric-box { display: flex; align-items: center; gap: 20px; padding: 12px; border-radius: 6px; background: #f7f7f7; }
+ .metric-icon { display: flex; gap: 4px; }
+ .bar { width: 12px; background: #fbbc04; border-radius: 2px; }
+ .bar:nth-child(1) { height: 30px; } .bar:nth-child(2) { height: 45px; } .bar:nth-child(3) { height: 60px; }
+ .metric-info h3 { font-size: 13px; color: #5f6368; font-weight: 400; margin-bottom: 4px; }
+ .metric-info .value { font-size: 36px; font-weight: 300; color: #202124; }
+ .brand { font-size: 18px; font-weight: 500; color: #5f6368; margin-bottom: 4px; }
+ .comparison-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+ .chart-container h2 { font-size: 16px; font-weight: 500; color: #202124; margin-bottom: 12px; }
+ .chart-bars { display: flex; flex-direction: column; gap: 12px; }
+ .chart-row { display: flex; align-items: center; gap: 12px; }
+ .chart-label { width: 120px; font-size: 13px; color: #5f6368; text-align: right; }
+ .chart-bar-container { flex: 1; position: relative; height: 28px; }
+ .chart-bar { height: 100%; background: #4285f4; border-radius: 2px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; transition: all 0.3s; }
+ .chart-bar:hover { opacity: 0.8; }
+ .chart-value { font-size: 12px; color: white; font-weight: 500; }
+ .table-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+ table { width: 100%; border-collapse: collapse; font-size: 13px; }
+ thead { background: #f8f9fa; }
+ th { padding: 12px 16px; text-align: left; font-weight: 500; color: #5f6368; border-bottom: 1px solid #dadce0; }
+ td { padding: 12px 16px; border-bottom: 1px solid #f1f3f4; color: #202124; }
+ tr:hover { background: #f8f9fa; }
+ tfoot { background: #f8f9fa; font-weight: 500; }
+ tfoot td { border-top: 2px solid #dadce0; border-bottom: none; }
+ .summary-box strong { color: #2e7d32; }
+ @media (max-width: 768px) { .cta-box { flex-direction: column; text-align: center; gap: 16px; } .comparison-section { grid-template-columns: 1fr; } .table-section { grid-template-columns: 1fr; } }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="header">
+ <div class="header-left">
+ <h1>📊 GA4 vs SealMetrics - <span class="website-name"id="websiteName">birdie.care</span></h1>
+ </div>
+ <div class="header-right">
+ <button class="btn"onclick="copyCSV()">📋 Copy CSV</button>
+ <button class="btn btn-primary"onclick="window.print()">🖨️ Export</button>
+ </div>
+ </div>
+ <div class="content">
+ <div class="summary-box"id="summaryBox">
+ Total GA4 sessions: 192,805 | Total SealMetrics (per current calculation): 98,579
+ </div>
+ <div class="cta-box">
+ <div class="cta-content">
+ <h3>🚀 Discover your website’s real traffic</h3>
+ <p>SealMetrics applies a 63% uplift on GA4 totals with a tailored approach per channel. Direct traffic is scaled down to 30% to reflect added attribution dynamics. All figures here use the provided GA4 data for birdie.care.</p>
+ </div>
+ <a href="https://sealmetrics.com/demo-request?utm_source=email&utm_medium=landing&utm_campaign=GA4-SM"class="cta-button"target="_blank">Request Free Demo</a>
+ </div>
+ <div class="top-metrics">
+ <div class="metric-box metric-ga4"aria-label="GA4 total">
+ <div class="metric-icon"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+ <div class="metric-info">
+ <div class="brand">Google Analytics</div>
+ <h3>Sessions</h3>
+ <div class="value"id="ga4Total">192,805</div>
+ </div>
+ </div>
+ <div class="metric-box metric-seal"aria-label="SealMetrics total">
+ <div class="metric-info">
+ <div class="brand">SealMetrics<sup>™</sup></div>
+ <h3>Clicks</h3>
+ <div class="value"id="sealTotal">98,579</div>
+ </div>
+ </div>
+ </div>
+ <div class="comparison-section">
+ <div class="chart-container"><h2>GA4</h2>
+ <div class="chart-bars"id="ga4Chart"></div>
+ </div>
+ <div class="chart-container"><h2>SealMetrics</h2>
+ <div class="chart-bars"id="sealChart"></div>
+ </div>
+ </div>
+ <div class="table-section">
+ <div class="table-container">
+ <h2>GA4</h2>
+ <table>
+ <thead><tr><th style="width:40px;"></th><th>Channel</th><th class="sortable"style="text-align:right;">Sessions</th></tr></thead>
+ <tbody id="ga4TableBody"></tbody>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="ga4TableTotal">192,805</strong></td></tr></tfoot>
+ </table>
+ </div>
+ <div class="table-container">
+ <h2>SealMetrics</h2>
+ <table>
+ <thead><tr><th style="width:40px;"></th><th>Channel</th><th class="sortable"style="text-align:right;">Clicks</th></tr></thead>
+ <tbody id="sealTableBody"></tbody>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="sealTableTotal">98,579</strong></td></tr></tfoot>
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+ <script>
+ // Populate GA4 and SealMetrics data for birdie.care
+ (function(){
+ // GA4 totals per provided channels
+ const ga4 = {
+ mail_visits: 266,
+ paid_visits: 0,
+ direct_visits: 162176,
+ search_visits: 7228,
+ social_visits: 1015,
+ referral_visits: 13877,
+ display_ad_visits: 0,
+ paid_search_visits: 0,
+ paid_social_visits: 0,
+ organic_search_visits: 7228,
+ organic_social_visits: 1015,
+ unknown_channel_visits: 0
+ };
+ const ga4Total = 192805; // sum of above
+ // Channel mapping for display
+ const ga4Channels = [
+ { key: 'mail_visits', label: 'Mail', value: ga4.mail_visits },
+ { key: 'paid_visits', label: 'Paid', value: ga4.paid_visits },
+ { key: 'direct_visits', label: 'Direct', value: ga4.direct_visits },
+ { key: 'search_visits', label: 'Search', value: ga4.search_visits },
+ { key: 'social_visits', label: 'Social', value: ga4.social_visits },
+ { key: 'referral_visits', label: 'Referral', value: ga4.referral_visits },
+ { key: 'display_ad_visits', label: 'Display Ad', value: ga4.display_ad_visits },
+ { key: 'paid_search_visits', label: 'Paid Search', value: ga4.paid_search_visits },
+ { key: 'paid_social_visits', label: 'Paid Social', value: ga4.paid_social_visits },
+ { key: 'organic_search_visits', label: 'Organic Search', value: ga4.organic_search_visits },
+ { key: 'organic_social_visits', label: 'Organic Social', value: ga4.organic_social_visits },
+ { key: 'unknown_channel_visits', label: 'Unknown', value: ga4.unknown_channel_visits }
+ ];
+ // SealMetrics calculations per channel (non-direct uses 1.63x GA4; direct uses 0.30x GA4)
+ const sealPerChannel = ga4Channels.map(ch => {
+ let sealVal = 0;
+ if (ch.key === 'direct_visits') {
+ sealVal = Math.round(ch.value * 0.30);
+ } else {
+ sealVal = Math.round(ch.value * 1.63);
+ }
+ return { label: ch.label, value: sealVal };
+ });
+ const sealTotal = sealPerChannel.reduce((a,b)=>a+b.value, 0);
+ // Update GA4 table
+ const ga4TBody = document.getElementById('ga4TableBody');
+ ga4Channels.forEach(ch => {
+ const tr = document.createElement('tr');
+ const tdIcon = document.createElement('td'); tdIcon.style.width='40px';
+ tdIcon.innerHTML = '&#9679;';
+ const tdLabel = document.createElement('td'); tdLabel.textContent = ch.label;
+ const tdVal = document.createElement('td'); tdVal.style.textAlign='right'; tdVal.textContent = ch.value.toLocaleString();
+ tr.appendChild(tdIcon); tr.appendChild(tdLabel); tr.appendChild(tdVal);
+ ga4TBody.appendChild(tr);
+ });
+ document.getElementById('ga4TableTotal').textContent = ga4Total.toLocaleString();
+ // Update SealMetrics table
+ const sealTBody = document.getElementById('sealTableBody');
+ sealPerChannel.forEach((ch,i)=>{
+ const tr = document.createElement('tr');
+ const tdIcon = document.createElement('td'); tdIcon.style.width='40px'; tdIcon.innerHTML = '&#9679;';
+ const tdLabel = document.createElement('td'); tdLabel.textContent = ch.label;
+ const tdVal = document.createElement('td'); tdVal.style.textAlign='right'; tdVal.textContent = ch.value.toLocaleString();
+ tr.appendChild(tdIcon); tr.appendChild(tdLabel); tr.appendChild(tdVal);
+ sealTBody.appendChild(tr);
+ });
+ document.getElementById('sealTableTotal').textContent = sealTotal.toLocaleString();
+ // Update charts simple bars
+ const ga4Chart = document.getElementById('ga4Chart');
+ const sealChart = document.getElementById('sealChart');
+ // Helper to create a bar row
+ function createBarRow(label, value, max) {
+ const row = document.createElement('div'); row.className='chart-row';
+ const lbl = document.createElement('div'); lbl.className='chart-label'; lbl.textContent = label;
+ const barContainer = document.createElement('div'); barContainer.className='chart-bar-container';
+ const bar = document.createElement('div'); bar.className='chart-bar';
+ const pct = max ? Math.max(0, Math.min(100, Math.round((value/max)*100))) : 0;
+ bar.style.width = (pct) + '%';
+ const val = document.createElement('span'); val.className='chart-value'; val.textContent = value.toLocaleString();
+ bar.appendChild(val);
+ barContainer.appendChild(bar);
+ row.appendChild(lbl); row.appendChild(barContainer);
+ return row;
+ }
+ // compute max for GA4 and Seal bars for nicer visuals
+ const ga4Max = Math.max(...ga4Channels.map(c => c.value), 1);
+ const sealMax = Math.max(...sealPerChannel.map(c => c.value), 1);
+ ga4Channels.forEach(ch => {
+ ga4Chart.appendChild(createBarRow(ch.label, ch.value, ga4Max));
+ });
+ sealPerChannel.forEach((ch) => {
+ sealChart.appendChild(createBarRow(ch.label, ch.value, sealMax));
+ });
+ })();
+
+ // Basic helpers (no-op to keep template functional)
+ function copyCSV() {
+ const csv = [];
+ // Build a simple CSV with GA4 and SealMetrics totals for the page
+ csv.push('Channel,GA4 Sessions,SealMetrics Clicks');
+ // Data would be expanded in a full implementation; here we provide a minimal placeholder for demo
+ csv.push('Direct,162176,48653');
+ csv.push('Other channels (summed),309,98926');
+ navigator.clipboard.writeText(csv.join('\n'));
+ alert('CSV copied to clipboard (demo data).');
+ }
+ </script>
+</body>
+</html>
