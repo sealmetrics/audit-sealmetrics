@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport"content="width=device-width, initial-scale=1.0">
+ <title>GA4 vs SealMetrics - cvent.com</title>
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Google Sans', Arial, sans-serif; background: #f8f9fa; color: #202124; line-height: 1.5; padding: 20px; }
+ .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; padding: 0; box-shadow: 0 1px 3px rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15); }
+ .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #dadce0; }
+ .header-left { display: flex; align-items: center; gap: 12px; }
+ .header-left h1 { font-size: 22px; font-weight: 400; color: #5f6368; }
+ .website-name { color: #1a73e8; font-weight: 500; }
+ .header-right { display: flex; gap: 10px; }
+ .btn { padding: 8px 16px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; background: white; color: #5f6368; transition: all 0.2s; }
+ .btn:hover { background: #f8f9fa; border-color: #dadce0; }
+ .btn-primary { background: #1a73e8; color: white; border-color: #1a73e8; }
+ .btn-primary:hover { background: #1765cc; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+ .content { padding: 24px; }
+ .top-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+ .metric-box { display: flex; align-items: center; gap: 20px; }
+ .metric-icon { display: flex; gap: 4px; }
+ .bar { width: 12px; background: #fbbc04; border-radius: 2px; }
+ .bar:nth-child(1) { height: 30px; } .bar:nth-child(2) { height: 45px; } .bar:nth-child(3) { height: 60px; }
+ .metric-info h3 { font-size: 13px; color: #5f6368; font-weight: 400; margin-bottom: 4px; }
+ .metric-info .value { font-size: 36px; font-weight: 300; color: #202124; }
+ .metric-ga4 .brand { font-size: 20px; font-weight: 500; color: #5f6368; margin-bottom: 4px; }
+ .metric-seal .brand { font-size: 24px; font-weight: 500; color: #202124; }
+ .metric-seal .brand sup { font-size: 12px; color: #16a34a; top: -8px; }
+ .comparison-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+ .chart-container h2 { font-size: 16px; font-weight: 500; color: #202124; margin-bottom: 20px; }
+ .chart-bars { display: flex; flex-direction: column; gap: 12px; }
+ .chart-row { display: flex; align-items: center; gap: 12px; }
+ .chart-label { width: 120px; font-size: 13px; color: #5f6368; text-align: right; }
+ .chart-bar-container { flex: 1; position: relative; height: 28px; }
+ .chart-bar { height: 100%; background: #4285f4; border-radius: 2px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; transition: all 0.3s; }
+ .chart-bar:hover { opacity: 0.8; }
+ .chart-value { font-size: 12px; color: white; font-weight: 500; }
+ .table-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+ table { width: 100%; border-collapse: collapse; font-size: 13px; }
+ thead { background: #f8f9fa; }
+ th { padding: 12px 16px; text-align: left; font-weight: 500; color: #5f6368; border-bottom: 1px solid #dadce0; }
+ td { padding: 12px 16px; border-bottom: 1px solid #f1f3f4; color: #202124; }
+ tr:hover { background: #f8f9fa; }
+ tfoot { background: #f8f9fa; font-weight: 500; }
+ tfoot td { border-top: 2px solid #dadce0; border-bottom: none; }
+ .summary-box { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #4caf50; padding: 20px; border-radius: 4px; margin-bottom: 30px; font-size: 14px; color: #1b5e20; }
+ .summary-box strong { color: #2e7d32; }
+ .cta-box { background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%); border-radius: 8px; padding: 24px; margin-bottom: 30px; color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3); }
+ .cta-content { flex: 1; }
+ .cta-content h3 { font-size: 18px; font-weight: 500; margin-bottom: 8px; color: white; }
+ .cta-content p { font-size: 14px; opacity: 0.95; line-height: 1.5; }
+ .cta-button { background: white; color: #1a73e8; padding: 12px 24px; border-radius: 4px; font-size: 15px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.2s; white-space: nowrap; }
+ .cta-button:hover { background: #f8f9fa; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); transform: translateY(-1px); }
+ @media (max-width: 768px) { .cta-box { flex-direction: column; text-align: center; gap: 16px; } .top-metrics { grid-template-columns: 1fr; } }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="header">
+ <div class="header-left">
+ <h1>📊 GA4 vs SealMetrics - <span class="website-name"id="websiteName">cvent.com</span></h1>
+ </div>
+ <div class="header-right">
+ <button class="btn"onclick="copyCSV()">📋 Copy CSV</button>
+ <button class="btn btn-primary"onclick="window.print()">🖨️ Export</button>
+ </div>
+ </div>
+ <div class="content">
+ <div class="summary-box"id="summaryBox">SealMetrics reports a total traffic gain of up to 63% over GA4 for the same period. Direct traffic is reduced to 30% in SealMetrics, with the remainder distributed proportionally across other channels.</div>
+ <div class="cta-box">
+ <div class="cta-content">
+ <h3>🚀 Discover your website’s real traffic</h3>
+ <p>SealMetrics captures up to 63% more traffic than GA4. No cookies, no banners, 100% GDPR compliant.</p>
+ </div>
+ <a href="https://sealmetrics.com/demo-request?utm_source=email&utm_medium=landing&utm_campaign=GA4-SM"class="cta-button"target="_blank">Request Free Demo</a>
+ </div>
+ <div class="top-metrics">
+ <div class="metric-box metric-ga4">
+ <div class="metric-icon"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+ <div class="metric-info">
+ <div class="brand">Google Analytics</div>
+ <h3>Sessions</h3>
+ <div class="value"id="ga4Total">0</div>
+ </div>
+ </div>
+ <div class="metric-box metric-seal">
+ <div class="metric-info">
+ <div class="brand">SealMetrics<sup>™</sup></div>
+ <h3>Clicks</h3>
+ <div class="value"id="sealTotal">0</div>
+ </div>
+ </div>
+ </div>
+ <div class="comparison-section">
+ <div class="chart-container"><h2>GA4</h2><div class="chart-header"><div class="legend-dot ga4"></div><span class="legend-text">Sessions</span></div><div class="chart-bars"id="ga4Chart"></div></div>
+ <div class="chart-container"><h2>SealMetrics</h2><div class="chart-header"><div class="legend-dot seal"></div><span class="legend-text">Clicks</span></div><div class="chart-bars"id="sealChart"></div></div>
+ </div>
+ <div class="table-section">
+ <div class="table-container">
+ <h2>GA4</h2>
+ <table>
+ <thead><tr><th style="width:40px;"></th><th>Sessions</th><th class="sortable"style="text-align:right;">Sessions</th></tr></thead>
+ <tbody id="ga4TableBody"></tbody>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="ga4TableTotal">0</strong></td></tr></tfoot>
+ </table>
+ </div>
+ <div class="table-container">
+ <h2>SealMetrics</h2>
+ <table>
+ <thead><tr><th style="width:40px;"></th><th>Channels</th><th class="sortable"style="text-align:right;">Clicks</th></tr></thead>
+ <tbody id="sealTableBody"></tbody>
+ <tfoot><tr><td></td><td><strong>Total</strong></td><td style="text-align:right;"><strong id="sealTableTotal">0</strong></td></tr></tfoot>
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+ <script>
+ // Populate data for GA4 and SealMetrics based on provided values
+ (function(){
+ // Website name
+ document.getElementById('websiteName').textContent = 'cvent.com';
+ // GA4 data (per channel)
+ const ga4 = {
+ mail: 151847,
+ paid: 16412,
+ direct: 2413389,
+ search: 254981,
+ social: 74189,
+ referral: 1006131,
+ display_ad: 8828,
+ paid_search: 16412,
+ paid_social: 0,
+ organic_search: 254981,
+ organic_social: 74189,
+ unknown: 0
+ };
+ // Total GA4
+ const ga4Total = Object.values(ga4).reduce((a,b)=>a+b,0);
+ // SealMetrics totals (Total = GA4 * 1.63; Direct = GA4.direct * 0.30; Others distributed proportionally)
+ const sealTotal = Math.round(ga4Total * 1.63);
+ const directSeal = Math.round(ga4.direct * 0.30);
+ // Others GA4 subtotal (excluding direct)
+ const ga4OthersSum = ga4Total - ga4.direct;
+ // Others SealMetrics total to distribute among non-direct channels
+ const sealOthersTotal = sealTotal - directSeal;
+ // Distribute proportionally by GA4 channel weights (excluding direct)
+ // We'll compute using the same channels order as ga4ExceptDirect
+ const channelOrder = ['mail','paid','search','social','referral','display_ad','paid_search','paid_social','organic_search','organic_social','unknown'];
+ let sealChannels = {};
+ // sum for check
+ let sumDistributed = 0;
+ channelOrder.forEach((ch)=>{
+ const val = ga4[ch] || 0;
+ if (ga4OthersSum === 0) { sealChannels[ch] = 0; return; }
+ // proportional share
+ const share = Math.round(val * (sealOthersTotal / ga4OthersSum));
+ sealChannels[ch] = share;
+ sumDistributed += share;
+ });
+ // Adjust for rounding mismatch to ensure total matches
+ const diff = (sealOthersTotal - sumDistributed);
+ // Adjust the largest channel by diff if needed
+ if (diff !== 0) {
+ const largest = Object.keys(sealChannels).reduce((a,b)=> (sealChannels[a] >= sealChannels[b] ? a : b));
+ sealChannels[largest] += diff;
+ }
+ // Apply channels to SealMetrics data
+ const seal = {
+ mail: sealChannels.mail,
+ paid: sealChannels.paid,
+ direct: directSeal, // keep as direct value separately
+ search: sealChannels.search,
+ social: sealChannels.social,
+ referral: sealChannels.referral,
+ display_ad: sealChannels.display_ad,
+ paid_search: sealChannels.paid_search,
+ paid_social: sealChannels.paid_social,
+ organic_search: sealChannels.organic_search,
+ organic_social: sealChannels.organic_social,
+ unknown: sealChannels.unknown
+ };
+ // Fill GA4 table
+ const ga4TableBody = document.getElementById('ga4TableBody');
+ const ga4Rows = [
+ {name:'Direct', value: ga4.direct},
+ {name:'Mail', value: ga4.mail},
+ {name:'Paid', value: ga4.paid},
+ {name:'Search', value: ga4.search},
+ {name:'Social', value: ga4.social},
+ {name:'Referral', value: ga4.referral},
+ {name:'Display Ad', value: ga4.display_ad},
+ {name:'Paid Search', value: ga4.paid_search},
+ {name:'Paid Social', value: ga4.paid_social},
+ {name:'Organic Search', value: ga4.organic_search},
+ {name:'Organic Social', value: ga4.organic_social},
+ {name:'Unknown', value: ga4.unknown},
+ ];
+ ga4TableBody.innerHTML = ga4Rows.map((r,i)=>`<tr><td>${i===0?' DIRECT':''}</td><td>${r.name}</td><td style="text-align:right;">${r.value.toLocaleString()}</td></tr>`).join('');
+ document.getElementById('ga4Total').textContent = ga4Total.toLocaleString();
+ document.getElementById('ga4TableTotal').textContent = ga4Total.toLocaleString();
+ // Fill SealMetrics table
+ const sealTableBody = document.getElementById('sealTableBody');
+ const sealRows = [
+ {name:'Mail', value: seal.mail},
+ {name:'Paid', value: seal.paid},
+ {name:'Search', value: seal.search},
+ {name:'Social', value: seal.social},
+ {name:'Referral', value: seal.referral},
+ {name:'Display Ad', value: seal.display_ad},
+ {name:'Paid Search', value: seal.paid_search},
+ {name:'Paid Social', value: seal.paid_social},
+ {name:'Organic Search', value: seal.organic_search},
+ {name:'Organic Social', value: seal.organic_social},
+ {name:'Unknown', value: seal.unknown},
+ ];
+ sealTableBody.innerHTML = sealRows.map((r,i)=>`<tr><td>${i===0?' DIRECT':''}</td><td>${r.name}</td><td style="text-align:right;">${r.value.toLocaleString()}</td></tr>`).join('');
+ const sealTotalDisplay = (seal.total || 0) + directSeal; // not used, display below as sum
+ const sealTableTotal = (Object.values(seal).reduce((a,b)=>a+(typeof b==='number'?b:0),0)) + directSeal;
+ // Update total in seal table
+ document.getElementById('sealTableTotal').textContent = sealTableTotal.toLocaleString();
+ // Totals for SealMetrics section
+ document.getElementById('sealTotal').textContent = (sealTotal + 0).toLocaleString();
+ // Totals for GA4 chart placeholders (simple bars as demonstration)
+ const ga4Chart = document.getElementById('ga4Chart');
+ const sealChart = document.getElementById('sealChart');
+ function addChartRow(container, label, value, max){
+ const width = max? Math.max(2, Math.round((value/max)*100)) : 20;
+ const bar = document.createElement('div');
+ bar.className = 'chart-row';
+ bar.innerHTML = `<div class="chart-label">${label}</div><div class="chart-bar-container"><div class="chart-bar"style="width:${width}%;"><span class="chart-value">${value.toLocaleString()}</span></div></div>`;
+ container.appendChild(bar);
+ }
+ // Simple max to scale bars
+ const ga4Max = Math.max(ga4Total, sealTotal);
+ ga4Chart.innerHTML = '';
+ sealChart.innerHTML = '';
+ addChartRow(ga4Chart, 'Total GA4', ga4Total, ga4Max);
+ addChartRow(sealChart, 'Total SealMetrics', sealTotal, ga4Max);
+ })();
+
+ // Helpers
+ function copyCSV(){
+ // Simple CSV export for GA4 and SealMetrics data (basic)
+ const lines = [];
+ lines.push('Source,Channel,Value');
+ // GA4 rows
+ const ga4 = {
+ Direct: 2413389,
+ Mail: 151847,
+ Paid: 16412,
+ Search: 254981,
+ Social: 74189,
+ Referral: 1006131,
+ Display_Ad: 8828,
+ Paid_Search: 16412,
+ Paid_Social: 0,
+ Organic_Search: 254981,
+ Organic_Social: 74189,
+ Unknown: 0
+ };
+ Object.entries(ga4).forEach(([k,v])=> lines.push(`GA4,${k},${v}`));
+ // SealMetrics sample (derived)
+ const seal = {
+ Direct: Math.round(2413389*0.30),
+ Mail: 509856,
+ Paid: 55108,
+ Search: 856148,
+ Social: 249105,
+ Referral: 3378272,
+ Display_Ad: 29640,
+ Paid_Search: 55108,
+ Paid_Social: 0,
+ Organic_Search: 856148,
+ Organic_Social: 248913,
+ Unknown: 0
+ };
+ Object.entries(seal).forEach(([k,v])=> lines.push(`SealMetrics,${k},${v}`));
+ const csv = lines.join('\n');
+ navigator.clipboard.writeText(csv).then(()=>{ alert('CSV copied to clipboard'); }).catch(()=>{ alert('Clipboard permission denied'); });
+ }
+ </script>
+</body>
+</html>
